@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US">
+  <id>https://aiki-cu.github.io/feed.xml</id>
+  <title>AIKI news</title>
+  <subtitle>Announcements and milestones from the Center for AI in Knowledge Institutions at CU Boulder.</subtitle>
+  <link href="https://aiki-cu.github.io/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://aiki-cu.github.io/news/"/>
+  <updated>2026-09-10T22:46:25-06:00</updated>
+  <author><name>AIKI</name><uri>https://aiki-cu.github.io/</uri></author>
+  
+  
+  <entry>
+    <id>https://aiki-cu.github.io/news/#event-aiki-inaugural-funding</id>
+    <title>AIKI received $250,000 in inaugural funding from CU Boulder’s Department of Computer Science.</title>
+    <link href="https://aiki-cu.github.io/news/#event-aiki-inaugural-funding"/>
+    <updated>2026-09-10T22:46:25-06:00</updated>
+    <summary type="html">September 9, 2026: AIKI received $250,000 in inaugural funding from CU Boulder’s Department of Computer Science.</summary>
+  </entry>
+  
+</feed>

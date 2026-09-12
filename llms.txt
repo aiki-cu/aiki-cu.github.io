@@ -1,0 +1,23 @@
+# AIKI — Center for AI in Knowledge Institutions
+
+> A research center in CU Boulder’s Department of Computer Science. AIKI studies how institutions create and share knowledge, and how AI changes their work.
+
+Director: Daniel Acuna. Established September 9, 2026.
+
+## Research and people
+
+- [Research](https://aiki-cu.github.io/research/): How institutions shape knowledge and how AI changes institutions.
+- [Knowledge creation](https://aiki-cu.github.io/research/knowledge-production/): We study how institutions shape research, careers, and the spread of ideas. Includes research questions and associated faculty.
+- [Trust and reliability](https://aiki-cu.github.io/research/knowledge-integrity/): We study how people judge information and where mistakes go unnoticed. Includes research questions and associated faculty.
+- [AI and language](https://aiki-cu.github.io/research/ai-mediated-text/): We study AI’s role in writing, editing, and summarizing information. Includes research questions and associated faculty.
+- [Power and influence](https://aiki-cu.github.io/research/power-and-narrative/): We study how language, social connections, and AI shape influence. Includes research questions and associated faculty.
+
+- [People](https://aiki-cu.github.io/people/): Director, core members, and affiliates.
+
+## Participation and information
+
+- [Join](https://aiki-cu.github.io/join/): Ways to work with us.
+- [News](https://aiki-cu.github.io/news/)
+- [About and contact](https://aiki-cu.github.io/about/)
+- [News by email](https://aiki-cu.github.io/join/#newsletter): Subscribe to AIKI news through a Google Groups invitation.
+- [Support](https://aiki-cu.github.io/support/): Discuss philanthropic support through CU Boulder for student participation, new research questions, and shared tools and data. Contact information is on this page.
