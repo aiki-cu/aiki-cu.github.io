@@ -1,18 +1,25 @@
 import { drawKnowledgeArchive } from './knowledge-archive.mjs';
 
 // Only visible art runs; reduced motion starts with the complete static SVG.
+// The visible toggle pauses and resumes the continuous motion (WCAG 2.2.2).
 const canvas = document.querySelector('[data-knowledge-archive]');
 if (canvas && !document.documentElement.classList.contains('motion-preview-enabled')) {
   const field = canvas.closest('.hero-flow');
   const opening = field.closest('.home-opening');
+  const toggle = opening.querySelector('.archive-toggle');
   const ctx = canvas.getContext('2d', { alpha: false });
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const compact = matchMedia('(max-width: 600px)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
-  let playing = !reduced.matches, useCanvas = playing;
+  let playing = !reduced.matches, userPaused = false, useCanvas = playing;
   let width = 0, height = 0, visible = false, time = 4, frame = 0, last = 0;
   const pointer = { x: 360, y: 230, strength: 0 };
   const target = { ...pointer };
+
+  function paintControl() {
+    toggle.setAttribute('aria-label', playing ? 'Pause animation' : 'Play animation');
+    toggle.dataset.playing = String(playing);
+  }
 
   function draw() {
     if (!ctx || !width || !height || !useCanvas) return;
@@ -57,6 +64,7 @@ if (canvas && !document.documentElement.classList.contains('motion-preview-enabl
       pointer.strength = 0;
       draw();
     }
+    paintControl();
     schedule();
   }
 
@@ -74,7 +82,7 @@ if (canvas && !document.documentElement.classList.contains('motion-preview-enabl
     if (pointer.strength < 0.01) { pointer.x = target.x; pointer.y = target.y; }
   }
 
-  if (ctx) {
+  if (ctx && toggle) {
     new ResizeObserver(entries => {
       ({ width, height } = entries[0].contentRect);
       const ratio = Math.min(devicePixelRatio || 1, 2);
@@ -91,11 +99,17 @@ if (canvas && !document.documentElement.classList.contains('motion-preview-enabl
       clearPointer();
       schedule();
     });
-    reduced.addEventListener('change', () => setPlaying(!reduced.matches));
+    reduced.addEventListener('change', () => setPlaying(!reduced.matches && !userPaused));
     compact.addEventListener('change', draw);
     finePointer.addEventListener('change', clearPointer);
     opening.addEventListener('pointermove', movePointer, { passive: true });
     opening.addEventListener('pointerleave', clearPointer);
     window.addEventListener('blur', clearPointer);
+    toggle.addEventListener('click', () => {
+      userPaused = playing;
+      setPlaying(!playing);
+    });
+    paintControl();
+    toggle.hidden = false;
   }
 }

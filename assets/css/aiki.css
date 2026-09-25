@@ -74,21 +74,31 @@ address { font-style: normal; }
 .text-link:hover { text-decoration: underline; }
 .lead { font-size: 23px; line-height: 1.5; }
 
-/* The approved monochrome identity remains separate from the color system. */
-.site-header { position: relative; z-index: 10; }
-.header-inner { width: min(1392px, calc(100% - 112px)); min-height: 112px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 38px; border-bottom: 1px solid var(--line); }
-.brand { display: block; flex-shrink: 0; width: 250px; padding-block: 24px; }
+/* CU's campus header comes first. The approved monochrome lockup and the
+   college affiliation form the white site-name header; navigation has its own row. */
+.site-header { position: relative; z-index: 10; background: var(--paper); color: var(--text); }
+.ucb-brand-bar { background: #000000; color: var(--paper); }
+.brand-bar-inner { width: min(1392px, calc(100% - 112px)); min-height: 48px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.ucb-home-link { display: block; flex: 0 1 240px; min-width: 160px; }
+.ucb-logo { width: 100%; }
+.ucb-search-link { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; margin-right: -13px; }
+.ucb-search { width: 18px; height: 18px; }
+.ucb-brand-bar a:focus-visible { outline-color: var(--cu-gold); }
+.ucb-search-link:focus-visible { outline-offset: -4px; }
+.header-inner { width: min(1392px, calc(100% - 112px)); margin: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 38px; border-bottom: 1px solid var(--line); }
+.is-home .header-inner { border-bottom: 0; }
+.site-name { flex: 1 1 0; min-width: 0; padding-block: 24px 20px; }
+.brand { display: block; width: 250px; }
 .brand img { width: 100%; }
-.primary-nav { display: flex; align-items: center; justify-content: flex-end; gap: 23px; font-size: 15px; line-height: 1.3; }
+.affiliation { margin-top: 14px; font-size: 13px; font-weight: 700; line-height: 1.35; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.affiliation a { text-decoration: none; }
+.affiliation a:hover { text-decoration: underline; }
+.primary-nav { display: flex; width: 100%; align-items: center; justify-content: flex-start; gap: 28px; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.3; }
 .primary-nav > a { padding-block: 16px; text-decoration: none; white-space: nowrap; }
 .primary-nav > a:hover, .primary-nav > a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; }
-.primary-nav .nav-join { display: flex; align-items: center; gap: 13px; border: 1px solid var(--text); border-radius: 3px; padding: 12px 16px; }
+.primary-nav .nav-join { display: flex; align-items: center; gap: 13px; margin-left: auto; margin-block: 8px; border: 1px solid var(--text); border-radius: 3px; padding: 12px 16px; }
 .nav-join .arrow-icon { width: 16px; height: 16px; }
 .menu-toggle { display: none; }
-.is-home .site-header { color: var(--paper); background: var(--deep); }
-.is-home .header-inner { border-color: var(--dark-line); }
-.is-home .nav-join { border-color: var(--mint); color: var(--mint); }
-.is-home .site-header a:focus-visible, .is-home .site-header button:focus-visible { outline-color: var(--mint); }
 
 /* Text and artwork share a centered row inside the capped content column. */
 .home-opening { position: relative; background: var(--deep); color: var(--surface); overflow: clip; }
@@ -104,10 +114,15 @@ address { font-style: normal; }
 .hero-flow canvas { opacity: 0; }
 .hero-flow.is-ready canvas { opacity: 1; }
 .hero-flow.is-ready img { opacity: 0; }
+.archive-toggle { position: absolute; right: max(56px, calc((100% - 1280px) / 2)); bottom: 20px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; color: var(--deep-muted); background: transparent; border: 1px solid var(--dark-line); border-radius: 3px; cursor: pointer; transition: color .2s, border-color .2s; }
+.archive-toggle svg { width: 18px; height: 18px; }
+.archive-toggle[data-playing="true"] .archive-play, .archive-toggle[data-playing="false"] .archive-pause { display: none; }
+.archive-toggle:hover { color: var(--mint); border-color: var(--mint); }
+.archive-toggle:focus-visible { outline-color: var(--mint); }
 .home-opening a:focus-visible { outline-color: var(--mint); }
 .theme-one { background: var(--mint); }
 .theme-two { background: var(--apricot); }
-.home-affiliation { position: relative; z-index: 1; padding-block: 22px 30px; font-size: 14px; color: var(--deep-muted); }
+.home-affiliation { position: relative; z-index: 1; padding-block: 22px 30px; padding-right: 64px; font-size: 14px; color: var(--deep-muted); }
 
 /* Research and evidence use the same open row grammar. */
 .research-rows { border-top: 1px solid var(--line); }
@@ -311,7 +326,7 @@ address { font-style: normal; }
 .news-year .news-description { font-size: 21px; }
 .news-year .news-item { grid-template-columns: 150px 1fr; gap: 25px; }
 
-/* Two independent identities, with their own space and university resources. */
+/* The center identity and CU's Be Boulder footer keep separate bands. */
 .footer-main { display: grid; grid-template-columns: 1.4fr .7fr 1fr; gap: 55px; padding-block: 65px; }
 .footer-identity img { width: min(100%, 350px); }
 .footer-nav { display: flex; flex-direction: column; gap: 12px; font-size: 15px; }
@@ -321,8 +336,8 @@ address { font-style: normal; }
 .footer-main address { font-size: 15px; color: var(--muted); }
 .university-footer { background: #111111; color: var(--paper); }
 .university-inner { display: flex; gap: 60px; justify-content: space-between; align-items: center; padding-block: 38px; }
-.cu-brand { display: block; width: 300px; flex-shrink: 0; padding: 15px 0; }
-.cu-brand img { width: 100%; max-height: 70px; object-fit: contain; object-position: left; }
+.be-boulder { display: block; width: 240px; flex-shrink: 0; padding: 12px 0; }
+.be-boulder img { width: 100%; }
 .university-details { font-size: 13px; }
 .university-details > a { font-size: 16px; font-weight: 600; text-decoration: none; }
 .university-details p { margin-block: 8px; color: #d6d6d6; }
@@ -330,16 +345,18 @@ address { font-style: normal; }
 .university-footer a:focus-visible { outline-color: var(--cu-gold); }
 
 @media (max-width: 1200px) {
-  .wrap, .header-inner { width: calc(100% - 80px); }
-  .primary-nav { gap: 15px; }
+  .wrap, .header-inner, .brand-bar-inner { width: calc(100% - 80px); }
+  .primary-nav { gap: 20px; }
   .brand { width: 225px; }
+  .archive-toggle { right: 40px; }
   .topic-layout, .about-layout { gap: 40px; }
 }
 @media (max-width: 1060px) {
-  .header-inner { flex-wrap: wrap; gap: 0 24px; padding-block: 8px; min-height: 96px; }
-  .primary-nav { width: 100%; justify-content: flex-start; flex-wrap: wrap; padding-bottom: 22px; gap: 10px 23px; }
+  .header-inner { gap: 0 24px; }
+  .site-name { padding-block: 20px 18px; }
+  .primary-nav { flex-wrap: wrap; padding-block: 10px 22px; gap: 10px 23px; }
+  .primary-nav .nav-join { margin: 0; }
   .nav-ready .menu-toggle { display: inline-flex; gap: 14px; align-items: center; justify-content: space-between; min-height: 48px; padding: 10px 12px; background: transparent; border: 1px solid var(--line); border-radius: 3px; font-size: 15px; }
-  .is-home .menu-toggle { border-color: var(--dark-line); }
   .menu-lines { width: 17px; height: 9px; border-block: 1px solid currentColor; }
   .hero-copy h1 { font-size: clamp(38px, 4.7vw, 55px); }
   .people-grid { gap: 25px; }
@@ -378,7 +395,7 @@ address { font-style: normal; }
   .topic-sidebar h2 { margin-bottom: 8px; }
   .theme-detail h2 { font-size: 27px; }
   .about-layout .contact-panel { max-width: 500px; }
-  .university-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .university-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
   .join-inner { flex-direction: column; align-items: start; gap: 30px; }
 }
 @media (max-width: 800px) {
@@ -388,13 +405,20 @@ address { font-style: normal; }
   .hero-intro { font-size: 20px; }
   .hero-flow { --frame-x: 0; --frame-y: 0; --frame-width: 720; --frame-height: 460; left: 50%; width: min(800px, calc(100vw + 120px)); margin-block: 8px -16px; transform: translateX(-50%); }
 }
+/* CU's brand bar narrows its logo below 768px. */
+@media (max-width: 767px) {
+  .ucb-home-link { flex-basis: 200px; }
+}
 @media (max-width: 600px) {
   body { font-size: 17px; }
-  .wrap, .header-inner { width: calc(100% - 40px); }
-  .brand { width: 220px; padding-block: 21px; }
-  .header-inner { min-height: 90px; gap: 0 12px; }
+  .wrap, .header-inner, .brand-bar-inner { width: calc(100% - 40px); }
+  .brand { width: 220px; }
+  .header-inner { gap: 0 12px; }
+  .site-name { padding-block: 18px 16px; }
+  .affiliation { margin-top: 12px; font-size: 12px; }
+  .archive-toggle { right: 20px; }
   .nav-ready .menu-toggle { gap: 8px; font-size: 14px; padding-inline: 9px; }
-  .primary-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; padding-top: 6px; }
+  .primary-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; padding-top: 8px; }
   .primary-nav > a { padding-block: 13px; }
   .primary-nav .nav-join { justify-content: space-between; }
   .home-hero { padding-block: 40px 0; }
@@ -459,12 +483,18 @@ address { font-style: normal; }
   .footer-identity img { width: 310px; }
   .footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 15px 20px; }
   .university-inner { padding-block: 28px; }
-  .cu-brand { width: 260px; }
 }
 @media (max-width: 360px) {
-  .wrap, .header-inner { width: calc(100% - 32px); }
+  .wrap, .header-inner, .brand-bar-inner { width: calc(100% - 32px); }
   .brand { width: 185px; }
+  .archive-toggle { right: 16px; }
   .hero-copy h1 { font-size: 37px; }
+}
+/* Forced colors replace backgrounds but not image pixels. Keep each fixed-color
+   mark on the ground it was drawn for, so none disappears in light or dark themes. */
+@media (forced-colors: active) {
+  .brand img, .footer-identity img { forced-color-adjust: none; background: #ffffff; padding: 4px; }
+  .ucb-logo, .ucb-search, .ucb-footer-be-boulder { forced-color-adjust: none; background: #000000; padding: 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -473,7 +503,7 @@ address { font-style: normal; }
 @media print {
   html { scroll-behavior: auto; }
   body, .home-opening, .join-strip, .university-footer { background: white; color: black; }
-  .site-header, .site-footer, .skip-link, .publication-filters, .publication-toolbar, .contents-nav, .section-nav, .hero-flow, .project-art, .join-strip { display: none !important; }
+  .site-header, .site-footer, .skip-link, .publication-filters, .publication-toolbar, .contents-nav, .section-nav, .hero-flow, .archive-toggle, .project-art, .join-strip { display: none !important; }
   .wrap { width: 100%; }
   .interior-main, .section-space { padding-block: 20px; }
   h1, .hero-copy h1 { font-size: 32px; }
